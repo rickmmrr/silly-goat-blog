@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Post Content-->
+<!-- Divider-->
+<hr class="my-4" />
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <h3>{{ post.title }}</h2>
+                <p>{{ post.intro }}</p>
+                <p>{{ post.overview | safe}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- /Post Content-->
+
+    {% endblock content %}

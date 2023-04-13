@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Main Content-->
+<!-- <div class="container px-4 px-lg-5 bg-secondary">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            #Post preview
+            {% for obj in object_list %}
+            <div class="post-preview">
+                <a href="{% url 'post' obj.pk %}">
+                    <h3 class="post-title">{{ obj.title }}</h2>
+                    <h4 class="post-subtitle">{{ obj.intro }}...</h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <a href="#!">{{ obj.author }}</a>
+                    {{ obj.updated_at|timesince }} ago
+                </p>
+            </div>
+            #Divider
+            <hr class="my-4" />
+            {% endfor %}
+
+            #Pager
+            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts
+                    →</a></div>
+        </div>
+    </div>
+</div> -->
+
+<main>
+    
+    <div class="row">
+        <div class="col-8">
+            
+            {% for obj in object_list %}
+            {% if forloop.counter0|divisibleby:2 %}
+                <div class="card bg-light text-black mb-resp">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ obj.title }}</h4>
+                        <p class="card-text">{{ obj.intro }}...</p>
+                        <h6 class="text-muted card-subtitle mb-2">{{ obj.updated_at|timesince }} ago</h6>
+                    </div>
+                </div>
+            {% else %}
+            <div class="card border-primary mb-resp">
+                <div class="card-body">
+                    <h4 class="card-title">{{ obj.title }}</h4>
+                    <p class="card-text">{{ obj.intro }}...</p>
+                    <h6 class="text-muted card-subtitle mb-2">{{ obj.updated_at|timesince }} ago</h6>
+                </div>
+            </div>
+
+            {% endif %}
+            
+
+            {% endfor %}
+         
+        </div>
+        <div class="col-4">
+            <h5 class="text-center">Posts</h5>
+            <hr>
+             {% for obj in object_list %}
+                <p class="font-weight-normal">{{ obj.title }}
+                <span class="font-weight-normal text-muted">{{ obj.updated_at|timesince }} ago</span>
+                </p>
+                
+            {% endfor %}
+        </div>
+    </div>
+    
+</main>
+
+{% endblock content %}
