@@ -1,16 +1,31 @@
 # blog/views.py
 from django.views.generic import ListView, DetailView, TemplateView
 from django.template.response import TemplateResponse
+from django.template import loader
 from .models import Post
+from django.shortcuts import render
+from django.http import HttpResponse
 
+def return_posts_by_tag(request, cat):
+    posts = Post.objects.filter(categories__title=cat)
 
-def return_posts_by_tag(request, arg):
-    print(arg)
+    template = loader.get_template("tag.html")
+
+    context = {"posts":posts,
+               "the_tag":cat}
+
+    check = template.render(context, request)
+
+    return HttpResponse(check)
+
+""" def return_posts_by_tag(request, pk):
+    print(pk)
     context = {
-        'posts': list(Post.objects.filter(categories=arg))
+        #'posts': list(Post.objects.filter(categories=arg))
+        'posts': Post.objects.get(),
         }
     return TemplateResponse(request, "tag.html", context)
-
+ """
 
 
 
