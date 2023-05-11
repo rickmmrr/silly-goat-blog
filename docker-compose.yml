@@ -3,9 +3,9 @@ version: "3.3"
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8090
-    volumes:
-      - .:/home/rick/code
+    #command: python manage.py runserver 0.0.0.0:8090
+    #volumes:
+    #  - .:/home/rick/code
     ports:
       - 8090:8090
     restart: unless-stopped

@@ -36,6 +36,13 @@ COPY ./requirements.txt .
 #    && apt-get -y install libpq-dev gcc
 RUN pip install -r requirements.txt
 
+#set production settings file
+ARG DjangoSettings=dj_project.settings_prod
+ENV DJANGO_SETTINGS_MODULE=$DjangoSettings
+
+EXPOSE 8090
 
 # Copy project
 COPY . .
+
+CMD ["sh", "./entrypoint.sh"]

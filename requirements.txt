@@ -3,4 +3,5 @@ Django==3.2.4
 django-environ
 sqlparse==0.4.2
 django-summernote
+gunicorn
 
