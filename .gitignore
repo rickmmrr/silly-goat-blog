@@ -127,6 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.venv_local_blog
 
 # Spyder project settings
 .spyderproject
