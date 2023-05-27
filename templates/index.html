@@ -2,33 +2,6 @@
 
 {% block content %}
 <!-- Main Content-->
-<!-- <div class="container px-4 px-lg-5 bg-secondary">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-            #Post preview
-            {% for obj in object_list %}
-            <div class="post-preview">
-                <a href="{% url 'post' obj.pk %}">
-                    <h3 class="post-title">{{ obj.title }}</h2>
-                    <h4 class="post-subtitle">{{ obj.intro }}...</h3>
-                </a>
-                <p class="post-meta">
-                    Posted by
-                    <a href="#!">{{ obj.author }}</a>
-                    {{ obj.updated_at|timesince }} ago
-                </p>
-            </div>
-            #Divider
-            <hr class="my-4" />
-            {% endfor %}
-
-            #Pager
-            <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts
-                    →</a></div>
-        </div>
-    </div>
-</div> -->
-
 <main>
     <div class="container-fluid">
         <div class="row">
@@ -46,38 +19,19 @@
 
                         <div class="row">
                             <div class="col-5"><h6 class="text-muted card-subtitle mb-2">{{ obj.updated_at|timesince }} ago</h6></div>
-                            <div class="col-6 ">
+                            <div class="col-6">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 {% for tag in obj.categories.all %}
                                 <span><!-- <a href="{% url 'tag_view' tag %}" class="text-black border border-primary p-1">#{{ tag }}</a> -->
-                                    <a class="btn btn-primary btn-sm" href="{% url 'tag_view' tag %}" role="button">#{{ tag }}</a></span>
-                                {% endfor %}</div>
-                        </div>
-
-
-
-                        <!-- <h6 class="text-muted card-subtitle mb-2">{{ obj.updated_at|timesince }} ago</h6>
-                            {% for tag in obj.categories.all %}
-                            <span>#{{ tag }} </span>
-                            {% endfor %} -->
-            
-
-                        
+                                    <a class="btn btn-secondary btn-sm m-sm-1" href="{% url 'tag_view' tag %}" role="button">#{{ tag }}</a></span>
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
-                
-                <!-- <div class="card bg-white mb-2">
-                    <div class="card-body">
-                        <a href="{% url 'post' obj.pk %}">
-                            <h4 class="card-title">{{ obj.title }}</h4>
-                        </a>
-                        <p class="card-text">{{ obj.intro }}...</p>
-                        <h6 class="text-muted card-subtitle mb-2">{{ obj.updated_at|timesince }} ago</h6>
-                    </div>
-                </div> -->
-
-                
+                               
                 {% endif %}
-
 
                 {% endfor %}
 
@@ -91,7 +45,7 @@
                 </a>
                 <span class="fs-6 text-muted">{{ obj.updated_at|timesince }} ago</span>
                 {% for tag in obj.categories.all %}
-                <span class=""><a href="{% url 'tag_view' tag %}" class="text-black border border-primary p-1">#{{ tag }}</a></span>
+                <span class=""><a href="{% url 'tag_view' tag %}" class="text-black p-1">#{{ tag }}</a></span>
                 {% endfor %}
             </p>
 
