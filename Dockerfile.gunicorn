@@ -1,0 +1,17 @@
+ARG BaseImage=python:3.10.4-slim-bullseye
+FROM $BaseImage
+ENV PYTHONUNBUFFERED 1
+WORKDIR /code
+COPY . .
+RUN apt-get update && \
+    pip install --no-cache-dir -r requirements.txt && \
+    rm -rf /var/lib/apt/lists/*
+EXPOSE 80
+VOLUME /code/staticfiles
+VOLUME /code/static
+VOLUME /code/media
+VOLUME /code/sqldata
+RUN python manage.py collectstatic --noinput
+#RUN echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | python manage.py shell
+CMD ["gunicorn", "-c", "gunicorn.ini", "dj_project.wsgi"]
+#CMD ["sh", "./entrypoint.sh"]
